@@ -1,220 +1,117 @@
-# Run this code in another IDE. This code is too advanced for Sololearn's IDE.
-
-# Calculator.
-def cal():
-  print("This is a calculator.")
-  print("You choose a number, then a sign and then the last number. The signs can be plus, minus, times, **, division and modulos.")
-  
-  num1 = int(input("Number 1 --> "))
-  sign = input("Sign --> ")
-  num2 = int(input("Last number --> "))
-  
-  if sign == "+" or sign == "-" or sign == "*" or sign == "/":
-    print("You want to calculate %s%s%s." % (num1, sign, num2))
-  
-  if sign == "+":
-      result = int(num1) + int(num2)
-      print("The result is %s." % (result))
-      
-  elif sign == "-":
-        result = int(num1) - int(num2)
-        print("The result is %s." % (result))
-        
-  elif sign == "*":
-    result = num1 * num2
-    print("The result is %s." % (result))
-	
-  elif sign == "/":
-	  result = num1 / num2
-	  print("The result is %s." % (result))
-	
-  elif sign == "**":
-	  result = num1**num2
-	  print("The result is %s." % (result))
-
-  elif sign == "%":
-	  result = num1 % num2
-	  print("The result is %s." % (result))
-
-  else:
-	  print("Something went wrong.")
+from tkinter import *
 
 
-# Square root function.
-def sqr():
-  from math import sqrt
-  answer = input("Enter a number you want to find the square root of: ")
-  def cals():
-    result = sqrt(int(answer))
-    print("The result is %s." % (result))
+class calculate():
 
-  print("We will now find the square root of you number.")
+    def __init__(self):
+        self.root = Tk()
+        self.root.title("Calculator")
+        self.root.geometry("370x220")
 
-  if len(answer) > 0 and answer.isnumeric:
-    cals()
-  
-  elif answer.isalpha:
-    print("You can only use numbers.")
+        self.resultwindow = Entry(self.root)
+        self.resultwindow.grid(row=0,column=0,columnspan=6)
+        self.resultwindow.config(font=("Arial", 18))
+        self.resultwindow.focus_set()  # Sets focus on the input text area
 
-  elif len(answer) == 0:
-    print("You must write something.")
-  
-  else:
-    print("Something went wrong.")
+        # Buttons
+        self.button1 = Button(self.root, text="1", width=3, command=lambda:self.ins('1'))
+        self.button1.grid(row=1,column=0, padx=3, pady=3)
+        self.button1.config(font=("Arial", 18))
 
-# Vector length.
-def length_vector():
-  print("Enter the length of the x coordinate and the length of the y coodinate.")
-  x, y = input("x and y coordinate: ").split()
-  print("Your vector is (%s, %s)" % (x, y))
-  
-  from math import sqrt
-  length = sqrt(int(x)**2) + sqrt(int(y)**2)
-  print("The length of the vector is %s." % (length))
+        self.button2 = Button(self.root, text="2", width=3, command=lambda:self.ins('2'))
+        self.button2.grid(row=1, column=1, padx=3, pady=3)
+        self.button2.config(font=("Arial", 18))
 
-# Cos, Sin and Tan.
-def deg():
-  
-  degr, nummer = input("Enter cos, sin or tan and then the number: ").split()
-  degr = degr.lower()
-  import math
-  if degr == "cos":
-    result = math.cos(math.radians(int(nummer)))
-    print("The result is %s" % (result))
-  
-  elif degr == "sin":
-    result = math.sin(math.radians(int(nummer)))
-    print("The result is %s" % (result))
-  
-  elif degr == "tan":
-    result = math.tan(math.radians(int(nummer)))
-    print("The result is %s" % (result))
-  
-  else:
-    print("Something went wrong.")
+        self.button3 = Button(self.root, text="3", width=3, command=lambda:self.ins('3'))
+        self.button3.grid(row=1, column=2, padx=3, pady=3)
+        self.button3.config(font=("Arial", 18))
 
-# if function.
-def t_if():
-  if choice == "calculator":
-    cal()
+        self.button4 = Button(self.root, text="4", width=3, command=lambda:self.ins('4'))
+        self.button4.grid(row=2, column=0, padx=3, pady=3)
+        self.button4.config(font=("Arial", 18))
 
-  elif choice == "square root":
-    sqr()
+        self.button5 = Button(self.root, text="5", width=3, command=lambda:self.ins('5'))
+        self.button5.grid(row=2, column=1, padx=3, pady=3)
+        self.button5.config(font=("Arial", 18))
 
-  elif choice == "vector length":
-    length_vector()
+        self.button6 = Button(self.root, text="6", width=3, command=lambda:self.ins('6'))
+        self.button6.grid(row=2, column=2, padx=3, pady=3)
+        self.button6.config(font=("Arial", 18))
 
-  elif choice == "line slope":
-    calc()
-  
-  elif choice == "degrees":
-    deg()
-  
-  elif choice == "vector":
-    vector()
+        self.button7 = Button(self.root, text="7", width=3, command=lambda:self.ins('7'))
+        self.button7.grid(row=3, column=0, padx=3, pady=3)
+        self.button7.config(font=("Arial", 18))
 
-  else:
-    print("Something went wrong. Make sure you spelled correctly.")
+        self.button8 = Button(self.root, text="8", width=3, command=lambda:self.ins('8'))
+        self.button8.grid(row=3, column=1, padx=3, pady=3)
+        self.button8.config(font=("Arial", 18))
 
-#Vector
-def vector():
-  decide = input("Choose 'Vector projection', 'determinant' 'Vector degrees' or 'Dot product': ").lower()
+        self.button9 = Button(self.root, text="9", width=3, command=lambda:self.ins('9'))
+        self.button9.grid(row=3, column=2, padx=3, pady=3)
+        self.button9.config(font=("Arial", 18))
 
-  if decide == "vector projection":
-   proj()
+        self.button0 = Button(self.root, text="0", width=3, command=lambda: self.ins('0'))
+        self.button0.grid(row=4, column=0, padx=3, pady=3)
+        self.button0.config(font=("Arial", 18))
 
-  elif decide == "dot product":
-    dot()
-  
-  elif decide == "vector degrees":
-    vec_deg()
-  
-  elif decide == "determinant":
-    det()
-    
-# Derteminant
-def det():
-  a1, a2 = input("Enter a1 and a2: ").split()
-  b1, b2 = input("Enter b1 and b2: ").split()
-  a1 = int(a1)
-  a2 = int(a2)
-  b1 = int(b1)
-  b2 = int(b2)
-  
-  determinant = (a1 * b2) - (a2 * b1)
-  print("The areal area of the parallellogram is %s." % (determinant))
-  lop = input("Do you want to calculate the are of the triangle -->").lower()
-  
-  if lop == "yes":
-    result = determinant * 0.5
-    print("The are area of the triangle is %s." % (result))
+        self.button_open = Button(self.root, text="(", width=3, command=lambda: self.ins('('))
+        self.button_open.grid(row=4, column=1, padx=3, pady=3)
+        self.button_open.config(font=("Arial", 18))
 
-#Dot product
-def dot():
-  a1, a2 = input("Enter a1 and a2: ").split()
-  b1, b2 = input("Enter b1 and b2: ").split()
-  a1 = int(a1)
-  a2 = int(a2)
-  b1 = int(b1)
-  b2 = int(b2)
-  
-  result = (a1 * b1) + (a2 * b2)
-  print("The dot product is %s." % (result))
+        self.button_close = Button(self.root, text=")", width=3, command=lambda: self.ins(')'))
+        self.button_close.grid(row=4, column=2, padx=3, pady=3)
+        self.button_close.config(font=("Arial", 18))
 
-# Vector degrees
-def vec_deg():
-  from math import sqrt
-  a1, a2 = input("Enter a1 and a2: ").split()
-  b1, b2 = input("Enter b1 and b2: ").split()
-  a1 = int(a1)
-  a2 = int(a2)
-  b1 = int(b1)
-  b2 = int(b2)
-  
-  dot = (a1 * b1) + (a2 * b2)
-  length = (sqrt(a1) + sqrt(a2)) * (sqrt(b1) + sqrt(b2))
-  degs = dot / length
-  print("The result is %s." % (degs))
+        # Operations Buttons
 
-#Vector proj
-def proj():
-  def prik_produkt():
-    return (a1 * b1) + (a2 * b2)
-  
-  def vec_length():
-    from math import sqrt
-    return (sqrt(b1**2) + sqrt(b2**2))**2
+        self.buttonplus = Button(self.root, text="+", width=3, command=lambda:self.ins('+'))
+        self.buttonplus.grid(row=1, column=3, padx=3, pady=3)
+        self.buttonplus.config(font=("Arial", 18))
 
-  a1, a2 = input("Enter a1 and a2: ").split()
-  b1, b2 = input("Enter b1 and b2: ").split()
-  a1 = int(a1)
-  a2 = int(a2)
-  b1 = int(b1)
-  b2 = int(b2)
+        self.buttonminus = Button(self.root, text="-", width=3, command=lambda:self.ins('-'))
+        self.buttonminus.grid(row=1, column=4, padx=3, pady=3)
+        self.buttonminus.config(font=("Arial", 18))
 
-  def res():
-    one = (prik_produkt() / vec_length()) * b1
-    two = (prik_produkt() / vec_length()) * b2
-    print("The result is (%s, %s)." % (one, two))
+        self.buttondivide = Button(self.root, text="/", width=3, command=lambda:self.ins('/'))
+        self.buttondivide.grid(row=2, column=3, padx=3, pady=3)
+        self.buttondivide.config(font=("Arial", 18))
 
-  res()
+        self.buttonmultiply = Button(self.root, text="*", width=3, command=lambda:self.ins('*'))
+        self.buttonmultiply.grid(row=2, column=4, padx=3, pady=3)
+        self.buttonmultiply.config(font=("Arial", 18))
 
-# Line slope
-def calc():
-  x, y = input("Enter x and y coordinates: ").split()
-  x2, y2 = input("Enter the second x and y coordinates: ").split()
-  ys = int(y2) - int(y)
-  xs = int(x2) - int(x)
-  result = int(ys) / int(xs)
-  print("The line slope er %s." % (result))
+        self.buttoncancel = Button(self.root, text="C", width=3, command=lambda: self.cancel())
+        self.buttoncancel.grid(row=3, column=4, padx=3, pady=3)
+        self.buttoncancel.config(font=("Arial", 18))
 
-print("Enter what type of calculations you want.")
-print("You can choose 'Square root', 'Vector length', 'Calculator', 'Vector', 'Degrees' and 'Line slope'.")
+        self.buttondeleteall = Button(self.root, text="Del", width=3, command=lambda: self.delete_all())
+        self.buttondeleteall.grid(row=3, column=3, padx=3, pady=3)
+        self.buttondeleteall.config(font=("Arial", 18))
 
-choice = input("Enter here: ").lower()
+        self.buttonresult = Button(self.root, text="=", width=6, command=lambda:self.calculate())
+        self.buttonresult.grid(row=4, column=3, padx=3, pady=3, columnspan=2)
+        self.buttonresult.config(font=("Arial", 18))
 
-if len(choice) > 0:
-  t_if()
+        self.root.mainloop()
 
-else:
-  print("Something went wrong. Make sure you spelled it correct.")
+    def ins(self,val):
+        self.resultwindow.insert(END, val)
+
+    def cancel(self):
+        self.resultwindow.delete(0, 'end')
+
+    def delete_all(self):
+        x = self.resultwindow.get()
+        self.resultwindow.delete(0, 'end')
+        y = x[:-1]
+        self.resultwindow.insert(0, y)
+
+    def calculate(self):
+        x = self.resultwindow.get()
+        answer = eval(x)
+        self.resultwindow.delete(0, 'end')
+        self.resultwindow.insert(0, answer)
+
+
+if __name__ == "__main__":
+    calculate()
